@@ -23,9 +23,9 @@ REPLAY.src = 'assets/replay.png'
 const ENEMY_BW = new Image(40, 31);
 ENEMY_BW.src = 'assets/enemy-bw.png';
 const CHICKEN = new Image(41, 50);
-CHICKEN.src = 'assets/chicken.png';
+CHICKEN.src = 'assets/player-1.png';
 const ENEMY = new Image(40, 31);
-ENEMY.src = 'assets/enemy.png';
+ENEMY.src = 'assets/enemy-1.png';
 
 let SPEED = 2.6;
 let LEVEL = 0;
@@ -114,6 +114,16 @@ function Player() {
   this.y = 120; // Start position
   this.gravity = 0;
   this.gravitySpeed = 0;
+  this.currentSprite = 1;
+  this.spriteRefreshIntervalId = setInterval(() => {
+    if (this.currentSprite == 1) {
+      CHICKEN.src = 'assets/player-2.png';
+      this.currentSprite = 2;
+    } else {
+      CHICKEN.src = 'assets/player-1.png';
+      this.currentSprite = 1;
+    }
+  }, 300);
   this.render = function () {
     scene.canvas.getContext("2d").drawImage(CHICKEN, this.x, this.y, this.width, this.height);
   }
